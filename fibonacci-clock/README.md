@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Fibonacci Clock
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación React que muestra un reloj basado en la secuencia de Fibonacci. La aplicación utiliza la hora actual para generar dinámicamente una secuencia de Fibonacci y la muestra en pantalla junto con la hora actual.
 
-## Available Scripts
+## Tabla de Contenidos
 
-In the project directory, you can run:
+- [Descripción](#descripción)
+- [Requisitos Previos](#requisitos-previos)
+- [Instalación](#instalación)
+- [Ejecución](#ejecución)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Funcionamiento](#funcionamiento)
+  - [Estado del Componente](#estado-del-componente)
+  - [Funciones Principales](#funciones-principales)
+  - [Ciclo de Vida del Componente](#ciclo-de-vida-del-componente)
+- [Scripts Disponibles](#scripts-disponibles)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Descripción
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+La aplicación muestra un reloj que actualiza la hora en tiempo real y genera una secuencia de Fibonacci basada en los minutos actuales. La secuencia se actualiza cada segundo para reflejar los cambios en la hora.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Requisitos Previos
 
-### `npm run build`
+Antes de ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/) (versión 14 o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Instalación
 
-### `npm run eject`
+1. Clona este repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/SebastianDiazJ/fibonacci-clock.git
+   
+Navega al directorio del proyecto:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+cd fibonacci-clock
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para ejecutar la aplicación en modo de desarrollo, utiliza el siguiente comando:
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Estructura del Proyecto
+fibonacci-clock/
+├── public/                 # Archivos públicos
+│   ├── index.html          # Archivo HTML principal
+│   └── favicon.ico         # Ícono de la aplicación
+├── src/                    # Código fuente
+│   ├── components/         # Componentes React
+│   │   └── [FibonacciClock.js](http://_vscodecontentref_/0) # Componente principal
+│   ├── App.js              # Punto de entrada de la aplicación
+│   ├── index.js            # Renderizado del DOM
+│   └── styles.css          # Estilos de la aplicación
+├── package.json            # Configuración del proyecto
+└── [README.md](http://_vscodecontentref_/1)               # Documentación del proyecto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## funcionamiento
 
-## Learn More
+Estado del Componente
+El componente FibonacciClock utiliza dos estados principales:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Secuencia: Un array que almacena la secuencia de Fibonacci generada dinámicamente.
+Hora: Una cadena que almacena la hora actual en formato HH:mm:ss.
+Funciones Principales
+1. generarFibonacci(n)
+Genera la secuencia de Fibonacci hasta el n-ésimo número.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Entrada: Un número entero n.
+Salida: Un array con los primeros n números de la secuencia de Fibonacci.
+Lógica:
+Si n <= 0, devuelve un array vacío.
+Si n === 1, devuelve [0].
+Si n > 1, genera la secuencia sumando los dos últimos números hasta alcanzar la longitud n.
+2. obtenerHoraActual()
+Obtiene la hora actual del sistema.
 
-### Code Splitting
+Salida: Un objeto con las propiedades horas, minutos y segundos.
+Lógica:
+Utiliza el objeto Date para obtener la hora, minutos y segundos actuales.
+3. determinarLongitud()
+Determina la longitud de la secuencia de Fibonacci basada en los minutos actuales.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Salida: Un número entero que representa los minutos actuales.
+Ciclo de Vida del Componente
+El componente utiliza el hook useEffect para manejar el ciclo de vida:
 
-### Analyzing the Bundle Size
+Montaje:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Se establece un intervalo que se ejecuta cada segundo.
+En cada iteración:
+Se calcula la longitud de la secuencia basada en los minutos actuales.
+Se genera una nueva secuencia de Fibonacci.
+Se actualiza la hora actual.
+Desmontaje:
 
-### Making a Progressive Web App
+Se limpia el intervalo utilizando clearInterval para evitar fugas de memoria.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

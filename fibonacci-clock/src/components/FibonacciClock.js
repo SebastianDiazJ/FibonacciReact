@@ -1,15 +1,15 @@
-import Reac, { useEffect, useState } from 'react';
-import { use } from 'react';
+import react, { useEffect, useState } from 'react';
+import { use } from 'react';        
 
-functionFibonacciClock() {
-    const [Secuencia, setSecuencia] = useState([]); // Estado para la secuencia de Fibonacci
+function FibonacciClock() {
+    const [Secuencia, setSecuencia] = useState([]); // Estado para almacenar la secuencia de Fibonacci
     const [Hora, setHora] = useState(''); // Estado para la hora actual
 
     useEffect(() => {
         
     const intervalId = setInterval(() => {
             const longitud = determinarLongitud(); // Llamar a la función para determinar la longitud de la secuencia
-            const nuevaSecuencia = generarSecuenciaFibonacci(longitud); // Generar la nueva secuencia de Fibonacci
+            const nuevaSecuencia = generarFibonacci(longitud); // Generar la nueva secuencia de Fibonacci
             setSecuencia(nuevaSecuencia); // Actualizar el estado con la nueva secuencia
 
             const { horas, minutos, segundos } = obtenerHoraActual(); // Obtener la hora actual
